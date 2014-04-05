@@ -1,4 +1,4 @@
-# Hadoop Hello World Example
+# Hadoop WordCount Example
 
 ## Prerequisites
 
@@ -47,6 +47,8 @@ Add to hadoop-env.sh:
 ```shell
 export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
 
+...
+
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.security.krb5.realm= -Djava.security.krb5.kdc="
 ```
 
@@ -89,6 +91,7 @@ Add to mapred-site.xml:
 ```
 
 Update your ~/.bash_profile PATH:
+
 ```shell
 PATH=$PATH:/usr/local/Cellar/hadoop/2.3.0/sbin
 ```
