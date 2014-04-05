@@ -1,0 +1,11 @@
+*~
+target
+**/.project
+**/.classpath
+**/.settings
+**/.idea
+*.iml
+**/.metadata
+/setexpt
+**/nbactions.xml
+**/nb-configuration.xml
