@@ -1,4 +1,4 @@
-package com.intuit.dataservices.hadoop;
+package com.iizrailevsky.hadoop;
 
 import java.io.IOException;
 
@@ -28,6 +28,12 @@ public class WordCount
 		private static final IntWritable one = new IntWritable(1);
 		private Text word = new Text();
 
+		/**
+		 * Breaks up the given line into words and maps each word (key) to 1 (value).
+		 * @param key Line number
+		 * @param value Line contents
+		 * @param context Output context to write key-value pairs to
+		 */
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			String line = value.toString();
 			String[] words = line.split("[\\p{Punct}\\s]+");
@@ -44,6 +50,12 @@ public class WordCount
 	public static class WordCountReduce extends Reducer<Text, IntWritable, Text, IntWritable> {
 		private IntWritable sumTotal = new IntWritable();
 
+		/**
+		 * Aggregates values (all ones) by each word (key) and writes out sum total to context.
+		 * @param key Key - word
+		 * @param values Iterator over the values - ones
+		 * @param context Output context to write aggregates by key
+		 */
 		public void reduce(Text key, Iterable<IntWritable> values, Context context)  throws IOException, InterruptedException {
 			int sum = 0;
 			for (IntWritable value : values) {
