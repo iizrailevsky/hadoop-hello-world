@@ -2,19 +2,19 @@
 
 ## Prerequisites
 
-Confirm Java 1.6
+Confirm Java 1.6.* or higher for Hadoop
 
 ```shell
 $ java -version
-java version "1.6.0_65"
-Java(TM) SE Runtime Environment (build 1.6.0_65-b14-462-11M4609)
-Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04-462, mixed mode)
+java version "1.7.0_79"
+Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 24.79-b02, mixed mode)
 ```
 
 Install Homebrew, if needed:
 
 ```shell
-$ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
 Ensure you can login to your localhost machine:
@@ -39,13 +39,13 @@ $ brew install hive
 Every component of Hadoop is configured using Shell and XML files.
 
 ```shell
-$ cd /usr/local/Cellar/hadoop/2.3.0/libexec/etc/hadoop
+$ cd /usr/local/Cellar/hadoop/2.7.1/libexec/etc/hadoop
 ```
 
-Add to hadoop-env.sh:
+Add to hadoop-env.sh your JAVA_HOME path, e.g.:
 
 ```shell
-export JAVA_HOME="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home"
 
 ...
 
@@ -96,6 +96,12 @@ Update your ~/.bash_profile PATH:
 PATH=$PATH:/usr/local/Cellar/hadoop/2.3.0/sbin
 ```
 
+Source your ~/.bash_profile
+
+```shell
+$ source ~/.bash_profile
+```
+
 ## Start Hadoop
 ```shell
 $ hadoop namenode -format
@@ -131,7 +137,7 @@ Found 2 items
 Run the WordCount example and check result output:
 
 ```shell
-$ hadoop jar target/hadoop-hello-world.jar com.intuit.dataservices.hadoop.WordCount /input /output
+$ hadoop jar target/hadoop-hello-world.jar com.iizrailevsky.hadoop.WordCount /input /output
 $ hadoop fs -ls /output
 $ hadoop fs -cat /output/part-r-00000
 Although        1
