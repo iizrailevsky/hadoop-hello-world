@@ -134,7 +134,7 @@ $ cd ~/hadoop-hello-world/
 $ mvn clean install
 ```
 
-## Run the Vote Tally example
+## Run the VoteTally Example
 
 Copy test input files to HDFS from local filesystem:
 
@@ -151,7 +151,7 @@ Found 5 items
 -rw-r--r--   1 iizrailevsky supergroup      12637 2015-09-26 17:27 /input/votetally/ballotsDistrict4
 ```
 
-Run the Vote Tally example and check result output:
+Run the VoteTally example and check result output:
 
 ```shell
 $ hadoop jar target/hadoop-hello-world.jar com.iizrailevsky.hadoop.example.votetally.VoteTally /input/votetally /output/votetally
@@ -162,7 +162,7 @@ Carson	324
 Christie	317
 ```
 
-## Run the WordCount example
+## Run the WordCount Example
 
 Copy test input files to HDFS from local filesystem:
 
