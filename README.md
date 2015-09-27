@@ -1,4 +1,4 @@
-# Hadoop Mac Install and Map-Reduce Examples
+# Hadoop Mac Install and Map Reduce Examples
 
 ## Prerequisites
 
