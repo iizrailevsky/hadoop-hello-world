@@ -93,7 +93,7 @@ Add to mapred-site.xml:
 Update your ~/.bash_profile PATH:
 
 ```shell
-PATH=$PATH:/usr/local/Cellar/hadoop/2.3.0/sbin
+PATH=$PATH:/usr/local/Cellar/hadoop/2.7.1/sbin
 ```
 
 Source your ~/.bash_profile
@@ -104,7 +104,11 @@ $ source ~/.bash_profile
 
 ## Start Hadoop
 ```shell
+# cleanup HDFS directory
+$ rm -rf /tmp/hadoop-*
+# format HDFS
 $ hadoop namenode -format
+# unleash the Hadoop daemons
 $ start-all.sh
 ```
 
@@ -115,7 +119,11 @@ $ ps aux | grep hadoop | wc -l
      6
 ```
 
-## Run the WordCount example
+Stop Hadoop:
+
+```shell
+$ stop-all.sh
+```
 
 Build hadoop-hello-world project:
 
@@ -124,11 +132,42 @@ $ cd ~/hadoop-hello-world/
 $ mvn clean install
 ```
 
+## Run the Vote Tally example
+
 Copy test input files to HDFS from local filesystem:
 
 ```shell
-$ hadoop fs -copyFromLocal src/test/resources/input /.
+$ hadoop fs -mkdir /input
+$ hadoop fs -copyFromLocal src/test/resources/input/votetally /input/.
 $ hadoop fs -ls /input
+$ hadoop fs -ls /input/votetally
+Found 5 items
+-rw-r--r--   1 iizrailevsky supergroup      12637 2015-09-26 17:27 /input/votetally/ballotsDistrict0
+-rw-r--r--   1 iizrailevsky supergroup      12566 2015-09-26 17:27 /input/votetally/ballotsDistrict1
+-rw-r--r--   1 iizrailevsky supergroup      12500 2015-09-26 17:27 /input/votetally/ballotsDistrict2
+-rw-r--r--   1 iizrailevsky supergroup      12557 2015-09-26 17:27 /input/votetally/ballotsDistrict3
+-rw-r--r--   1 iizrailevsky supergroup      12637 2015-09-26 17:27 /input/votetally/ballotsDistrict4
+```
+
+Run the Vote Tally example and check result output:
+
+```shell
+$ hadoop jar target/hadoop-hello-world.jar com.iizrailevsky.hadoop.example.votetally.VoteTally /input/votetally /output/votetally
+$ hadoop fs -ls /output/votetally
+$ hadoop fs -cat /output/votetally/part-r-00000
+Bush	354
+Carson	324
+Christie	317
+```
+
+## Run the WordCount example
+
+Copy test input files to HDFS from local filesystem:
+
+```shell
+$ hadoop fs -mkdir /input
+$ hadoop fs -copyFromLocal src/test/resources/input/wordcount /input/.
+$ hadoop fs -ls /input/wordcount
 Found 2 items
 -rw-r--r--   1 iizrailevsky supergroup        520 2014-04-05 15:39 /input/test1
 -rw-r--r--   1 iizrailevsky supergroup        590 2014-04-05 15:39 /input/test2
@@ -137,16 +176,12 @@ Found 2 items
 Run the WordCount example and check result output:
 
 ```shell
-$ hadoop jar target/hadoop-hello-world.jar com.iizrailevsky.hadoop.WordCount /input /output
-$ hadoop fs -ls /output
-$ hadoop fs -cat /output/part-r-00000
+$ hadoop jar target/hadoop-hello-world.jar com.iizrailevsky.hadoop.example.wordcount.WordCount /input/wordcount /output/wordcount
+$ hadoop fs -ls /output/wordcount
+$ hadoop fs -cat /output/wordcount/part-r-00000
 Although        1
 Cymbeline       3
 Denmark 2
 ```
 
-Stop Hadoop:
 
-```shell
-$ stop-all.sh
-```

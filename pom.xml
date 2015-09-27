@@ -68,7 +68,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.intuit.dataservices.hadoop.WordCount</mainClass>
+							<mainClass>com.iizrailevsky.hadoop.example.electionwinner.ElectionWinner</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

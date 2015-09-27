@@ -1,4 +1,4 @@
-package com.iizrailevsky.hadoop;
+package com.iizrailevsky.hadoop.example.wordcount;
 
 import java.io.IOException;
 
