@@ -1,4 +1,4 @@
-# Hadoop WordCount Example
+# Hadoop Mac Install and Map-Reduce Examples
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Source your ~/.bash_profile
 $ source ~/.bash_profile
 ```
 
-## Start Hadoop
+## Start / Stop Hadoop
 ```shell
 # cleanup HDFS directory
 $ rm -rf /tmp/hadoop-*
@@ -124,6 +124,8 @@ Stop Hadoop:
 ```shell
 $ stop-all.sh
 ```
+
+## Hadoop Examples Setup
 
 Build hadoop-hello-world project:
 
