@@ -11,10 +11,15 @@ Java(TM) SE Runtime Environment (build 1.7.0_79-b15)
 Java HotSpot(TM) 64-Bit Server VM (build 24.79-b02, mixed mode)
 ```
 
-Install Homebrew, if needed:
+Install Homebrew, Git, Maven if needed:
 
 ```shell
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+% brew install git
+% brew install git-flow-avh
+
+% brew install maven
 ```
 
 Ensure you can login to your localhost machine:
